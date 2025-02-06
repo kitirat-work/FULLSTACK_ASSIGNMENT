@@ -1,1 +1,14 @@
 mock/
+db/init/account_balances.sql
+db/init/account_details.sql
+db/init/account_flags.sql
+db/init/accounts.sql
+db/init/banners.sql
+db/init/debit_card_design.sql
+db/init/debit_card_details.sql
+db/init/debit_card_status.sql
+db/init/debit_cards.sql
+db/init/transactions.sql
+db/init/user_greetings.sql
+db/init/users.sql
+.env
