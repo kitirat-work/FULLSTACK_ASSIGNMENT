@@ -445,12 +445,12 @@ button {
 	height: 54px;
 	margin: 0 auto;
 	border-radius: 50%;
-	background: #d0dae4 url(../img/common/bg_profile.png);
+	/* background: #d0dae4 url(../img/common/bg_profile.png); */
 	background-size: 100%
 }
 
 .rctly__thumb.is-bank {
-	background-image: url(../img/common/bg_logo.png)
+	/* background-image: url(../img/common/bg_logo.png) */
 }
 
 .rctly__thumb img {
@@ -586,7 +586,7 @@ button {
 	margin: 4px auto 0;
 	width: 92px;
 	height: 92px;
-	background: #d0dae4 url(../img/common/bg_profile.png);
+	/* background: #d0dae4 url(../img/common/bg_profile.png); */
 	background-size: 100%;
 	border-radius: 50%
 }
