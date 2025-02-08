@@ -1,22 +1,27 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  mode: 'development',
+  entry: './src/index.tsx',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
-        test: /\.html$/i,
-        loader: 'html-loader',
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
@@ -28,23 +33,14 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/pages/splash.html',
-      filename: 'splash.html',
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/pages/pin.html',
-      filename: 'pin.html',
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/pages/bank_main.html',
-      filename: 'bank_main.html',
+      template: './src/index.html',
     }),
   ],
   devServer: {
     static: './dist',
-    open: true,
     port: 3000,
+    historyApiFallback: true, // รองรับการใช้ React Router
   },
-  mode: 'development',
 };

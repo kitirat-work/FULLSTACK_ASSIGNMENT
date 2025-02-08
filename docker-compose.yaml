@@ -30,6 +30,20 @@ services:
       - app-network
     depends_on:
       - db
+  
+  web:
+    build:
+      context: web
+      dockerfile: Dockerfile
+    container_name: web
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+    depends_on:
+      - api
 
 volumes:
   db_data:
