@@ -9,6 +9,7 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Splash />} />
+        <Route path="/splash" element={<Splash />} />
         <Route path="/bank-main" element={<BankMain />} />
         <Route path="/pin" element={<Pin />} />
       </Routes>

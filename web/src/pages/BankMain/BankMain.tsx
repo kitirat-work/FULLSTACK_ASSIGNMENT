@@ -12,7 +12,7 @@ const BankMain: FunctionComponent<BankMainProps> = () => {
   }, []);
 
   return (
-    <div className="wrap">
+    <>
 
       <header className="header ">
         <a href="#" className="header__lft header__menu"><span className="blind">Menu</span></a>
@@ -267,7 +267,7 @@ const BankMain: FunctionComponent<BankMainProps> = () => {
           </div>
         </div>
       </main>
-    </div>
+    </>
   );
 };
 
