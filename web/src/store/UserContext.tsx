@@ -1,17 +1,22 @@
 import * as React from 'react';
 import { User } from '../model/user';
+import UserService from "../service/UserService";
 
 /* Reducer */
-export type Action = { type: 'update'; payload: User };
+export type Action = { type: 'update'; payload: User; };
 export type Dispatch = (action: Action) => void;
-export type State = { user: User | null };
+export type State = { user: User | null; };
 
 const UserStateContext = React.createContext<State | undefined>(undefined);
 const UserDispatchContext = React.createContext<Dispatch | undefined>(undefined);
 
 function userReducer(state: State, action: Action): State {
+  console.log('userReducer', state, action);
+
   switch (action.type) {
     case 'update':
+      console.log({ ...state, user: action.payload });
+
       return { ...state, user: action.payload };
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -19,7 +24,7 @@ function userReducer(state: State, action: Action): State {
 }
 
 /* Provider */
-function UserProvider({ children }: { children: React.ReactNode }) {
+function UserProvider({ children }: { children: React.ReactNode; }) {
   const [state, dispatch] = React.useReducer(userReducer, { user: null });
   return (
     <UserStateContext.Provider value={state}>
@@ -31,11 +36,23 @@ function UserProvider({ children }: { children: React.ReactNode }) {
 }
 
 /* Hooks */
+// const USER_ID = "000018b0e1a211ef95a30242ac180002";
+// async function initUser() {
+//   try {
+//     const res: User = await UserService.GetUserById(USER_ID);
+//     dispatchUser({ type: 'update', payload: res });
+
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+
 function useUserState() {
   const context = React.useContext(UserStateContext);
   if (context === undefined) {
     throw new Error('useUserState must be used within a UserProvider');
   }
+
   return context;
 }
 
@@ -50,24 +67,5 @@ function useUserDispatch() {
 function userUserStore() {
   return [useUserState(), useUserDispatch()];
 }
-
-/* 
-  Usage:
-  const [userState, userDispatch] = userUserStore();
-  userDispatch({ type: 'update', payload: user });
-
-  const { user } = useUserState();
-
-  return (
-    <div>
-      <h1>{user.name}</h1>
-    </div>
-  );
-
-  <UserProvider>
-    <App />
-  </UserProvider>
-
-*/
 
 export { UserProvider, useUserState, useUserDispatch, userUserStore };

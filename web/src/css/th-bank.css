@@ -619,7 +619,6 @@ button {
 
 .pin__dsc {
 	height: 37px;
-	margin-top: -37px;
 	font-size: 1.4rem;
 	line-height: 1.8rem;
 	color: #fff;
@@ -747,7 +746,7 @@ button {
 	top: 50%;
 	left: 50%;
 	margin: -22.5px 0 0 -22.5px;
-	content: ""
+	content: "";
 }
 
 .pin__key--del:before,

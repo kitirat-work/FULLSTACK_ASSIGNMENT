@@ -47,6 +47,8 @@ module.exports = {
   devServer: {
     static: './dist',
     port: 3000,
-    historyApiFallback: true, // รองรับการใช้ React Router
+    historyApiFallback: {
+      disableDotRule: true, // Ensure proper handling of asset requests
+    },
   },
 };

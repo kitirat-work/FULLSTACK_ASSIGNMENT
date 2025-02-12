@@ -1,61 +1,19 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
+import { usePin } from "./usePin";
 
 interface PinProps {
 
 }
 
 const Pin: FunctionComponent<PinProps> = () => {
-  // get user info from store
-  // receive pin
-  // call api to validate pin
-  // if success redirect to bank main
-  // if fail show error message
-  // if fail 3 times end!!
-  interface PinState {
-    photoUrl: string;
-    name: string;
-    pin: string;
-    attemptsLeft: number;
-    errorMessage: string;
-  }
-
-  const [state, setState] = React.useState<PinState>({
-    photoUrl: "https://dummyimage.com/200x200/999/fff",
-    name: "Interview User",
-    pin: "",
-    attemptsLeft: 3,
-    errorMessage: "",
-  });
-
-  const handleKeyPress = (key: string) => {
-    if (key === "del") {
-      setState((prevState) => ({
-        ...prevState,
-        pin: prevState.pin.slice(0, -1),
-      }));
-    } else if (state.pin.length < 6) {
-      setState((prevState) => ({
-        ...prevState,
-        pin: prevState.pin + key,
-      }));
-    }
-  };
-
-  async function handleSubmit() {
-
-  }
-
-  React.useEffect(() => {
-    document.title = "Pin Screen";
-  }, []);
-
+  const { state, user, handleKeyPress } = usePin();
   return (
     <main className="container container--pin-type">
       <div className="pin">
         <div className="pin__top">
-          <span className="pin__photo"><img src={state.photoUrl} alt="profile picture" /></span>
-          <h1 className="pin__name">{state.name}</h1>
+          <span className="pin__photo"><img src={user?.banner.image} alt="profile picture" /></span>
+          <h1 className="pin__name">{user?.name}</h1>
           <p className="pin__dsc" style={{ display: state.errorMessage ? 'block' : 'none' }}>
             {state.errorMessage}<br />
             You have {state.attemptsLeft} attempts left.
