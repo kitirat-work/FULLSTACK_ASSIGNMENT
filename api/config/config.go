@@ -7,7 +7,7 @@ import (
 
 type Configuration struct {
 	SQLConnStr string `env:"SQL_CONN_STR" default:"myuser:mypassword@tcp(db:3306)/mydatabase?charset=utf8mb4&parseTime=True&loc=Local"`
-	PORT       string `env:"PORT" default:"3000"`
+	PORT       string `env:"PORT" default:"8080"`
 }
 
 func New() Configuration {
