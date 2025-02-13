@@ -1,22 +1,23 @@
-import { Banner } from "../model/banner";
 import { User } from "../model/user";
 
 const baseURL = process.env.API_URL + '/user';
 
 async function GetUserById(id: string): Promise<User> {
-  
+
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const user: User = {
         user_id: "user_id",
         name: "name",
-        banner: {
+        banner: [{
           banner_id: "banner_id",
           user_id: "user_id",
           title: "title",
           description: "description",
           image: "image",
-        } as Banner,
+        }],
+        accounts: [],
+        debitCards: [],
       };
       resolve(user);
     }, 1000);
@@ -61,6 +62,6 @@ async function Login(pin: string): Promise<void> {
 
 
 export default {
- GetUserById,
+  GetUserById,
   Login,
 };

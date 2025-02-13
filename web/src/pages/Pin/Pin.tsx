@@ -12,8 +12,8 @@ const Pin: FunctionComponent<PinProps> = () => {
     <main className="container container--pin-type">
       <div className="pin">
         <div className="pin__top">
-          <span className="pin__photo"><img src={user?.banner.image} alt="profile picture" /></span>
-          <h1 className="pin__name">{user?.name}</h1>
+          <span className="pin__photo"><img src="" alt="profile picture" /></span>
+          <h1 className="pin__name"></h1>
           <p className="pin__dsc" style={{ display: state.errorMessage ? 'block' : 'none' }}>
             {state.errorMessage}<br />
             You have {state.attemptsLeft} attempts left.

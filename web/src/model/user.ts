@@ -4,11 +4,11 @@ import { DebitCard } from "./debit_card";
 export type User = {
   user_id: string;
   name: string;
-  
+
   //has many banner
   banner: Banner[];
   //has one user greeting
-  userGreeting: UserGreeting;
+  userGreeting?: UserGreeting;
   //has many accounts
   accounts: Account[];
   //has many debit cards

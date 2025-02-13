@@ -67,7 +67,7 @@ const BankMain: FunctionComponent<BankMainProps> = () => {
                 easliy</span>
             </div>
           </div>
-
+          {/* List of Transactions */}
           <div className="rctly__wrap main-loading main-loading--order5">
             <ul className="rctly__lst">
               <li className="rctly__item">
@@ -115,10 +115,12 @@ const BankMain: FunctionComponent<BankMainProps> = () => {
 
             </ul>
           </div>
+          {/* Banner */}
           <a className="main-make main-loading main-loading--order6" style={{ display: 'none' }}>
             <strong className="main-make__tit">Make your Debit Card</strong>
             <p className="main-make__dsc">To enjoy 0.5% cash back from online perchase.</p>
           </a>
+          {/* Debit */}
           <div className="debit-swipe__wrap main-loading main-loading--order6">
             <div className="debit-swipe__inner">
               <div className="debit-swipe__lst" style={{ width: '1595px' }}>
@@ -157,6 +159,7 @@ const BankMain: FunctionComponent<BankMainProps> = () => {
             </div>
           </div>
 
+          {/* accounts */}
           <div className="main-acc is-bluegreen is-small">
             <div className="main-acc__top">
               <h2 className="main-acc__name">Saving Account</h2>
@@ -256,6 +259,7 @@ const BankMain: FunctionComponent<BankMainProps> = () => {
               <span className="blind">Pay</span>
             </a>
           </div>
+          {/* Banner */}
           <a href="#" className="main-prod">
             <span className="main-prod__cms-ico"><img src="https://dummyimage.com/54x54/999/fff" alt="" /></span>
             <strong className="main-prod__tit">Want some money?</strong>
