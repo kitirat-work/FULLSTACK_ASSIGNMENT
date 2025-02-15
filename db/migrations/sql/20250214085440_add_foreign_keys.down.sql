@@ -1,0 +1,11 @@
+ALTER TABLE `account_balances` DROP FOREIGN KEY `fk_account_balances_accounts`;
+ALTER TABLE `account_details` DROP FOREIGN KEY `fk_account_details_accounts`;
+ALTER TABLE `account_flags` DROP FOREIGN KEY `fk_account_flags_accounts`;
+ALTER TABLE `accounts` DROP FOREIGN KEY `fk_accounts_users`;
+ALTER TABLE `banners` DROP FOREIGN KEY `fk_banners_users`;
+ALTER TABLE `debit_card_design` DROP FOREIGN KEY `fk_debit_card_design_debit_cards`;
+ALTER TABLE `debit_card_details` DROP FOREIGN KEY `fk_debit_card_details_debit_cards`;
+ALTER TABLE `debit_card_status` DROP FOREIGN KEY `fk_debit_card_status_debit_cards`;
+ALTER TABLE `debit_cards` DROP FOREIGN KEY `fk_debit_cards_users`;
+ALTER TABLE `transactions` DROP FOREIGN KEY `fk_transactions_users`;
+ALTER TABLE `user_greetings` DROP FOREIGN KEY `fk_user_greetings_users`;
