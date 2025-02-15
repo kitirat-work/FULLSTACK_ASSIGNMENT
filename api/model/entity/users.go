@@ -8,6 +8,12 @@ type Users struct {
 	Banners []Banners `gorm:"foreignKey:UserID;references:UserID"`
 	// has one user greetings
 	UserGreetings UserGreetings `gorm:"foreignKey:UserID;references:UserID"`
+	// has many accounts
+	Accounts []Accounts `gorm:"foreignKey:UserID;references:UserID"`
+	// has many debit cards
+	DebitCards []DebitCards `gorm:"foreignKey:UserID;references:UserID"`
+	// has many transactions
+	Transactions []Transactions `gorm:"foreignKey:UserID;references:UserID"`
 }
 
 func (Users) TableName() string {

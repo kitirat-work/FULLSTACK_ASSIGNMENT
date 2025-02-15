@@ -17,7 +17,7 @@ type userController struct {
 // GetById implements UserController.
 func (u *userController) GetById(ctx echo.Context) error {
 	id := ctx.Param("id")
-	user, err := u.userService.GetById(id)
+	user, err := u.userService.GetById(ctx.Request().Context(), id)
 	if err != nil {
 		return ctx.JSON(500, map[string]interface{}{
 			"message": err.Error(),

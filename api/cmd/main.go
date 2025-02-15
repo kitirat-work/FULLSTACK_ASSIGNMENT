@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/cache"
 	"api/config"
 	"api/controller"
 	"api/repository"
@@ -36,17 +37,25 @@ func main() {
 		}
 	}()
 
+	/* cache */
+	cacheInstance := cache.NewLoginCache()
+	cacheInstance.InitCacheReset()
+
 	// repository
 	userRepo := repository.NewUserRepository(gormDB)
 
 	// service
 	userService := service.NewUserService(userRepo)
+	authService := service.NewAuthService(cacheInstance, userRepo)
 
 	// controller
 	userController := controller.NewUserController(userService)
+	authController := controller.NewAuthController(authService)
 
 	// routing
 	e.GET("/user/:id", userController.GetById)
+
+	e.POST("/auth/login/pin", authController.LoginPin)
 
 	// add a middleware to write logs
 	e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
