@@ -7,11 +7,11 @@ async function GetUserById(id: string): Promise<User> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const user: User = {
-        user_id: "user_id",
+        userId: "user_id",
         name: "name",
         banner: [{
-          banner_id: "banner_id",
-          user_id: "user_id",
+          bannerId: "banner_id",
+          userId: "user_id",
           title: "title",
           description: "description",
           image: "image",

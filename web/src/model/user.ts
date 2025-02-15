@@ -2,7 +2,7 @@ import { Account } from "./account";
 import { DebitCard } from "./debit_card";
 
 export type User = {
-  user_id: string;
+  userId: string;
   name: string;
 
   //has many banner
@@ -16,14 +16,14 @@ export type User = {
 }
 
 export type Banner = {
-  banner_id: string;
-  user_id: string;
+  bannerId: string;
+  userId: string;
   title: string;
   description: string;
   image: string;
 }
 
 export type UserGreeting = {
-  user_id: string;
+  userId: string;
   greeting: string;
 }

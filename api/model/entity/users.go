@@ -1,17 +1,17 @@
 package entity
 
 type Users struct {
-	UserID string `json:"user_id" gorm:"column:user_id;type:varchar(50);primaryKey"`
+	UserID string `json:"userId" gorm:"column:user_id;type:varchar(50);primaryKey"`
 	Name   string `json:"name" gorm:"column:name;type:varchar(100)"`
 
 	// has many banners
 	Banners []Banners `json:"banners" gorm:"foreignKey:UserID;references:UserID"`
 	// has one user greetings
-	UserGreetings UserGreetings `json:"user_greetings" gorm:"foreignKey:UserID;references:UserID"`
+	UserGreetings UserGreetings `json:"userGreetings" gorm:"foreignKey:UserID;references:UserID"`
 	// has many accounts
 	Accounts []Accounts `json:"accounts" gorm:"foreignKey:UserID;references:UserID"`
 	// has many debit cards
-	DebitCards []DebitCards `json:"debit_cards" gorm:"foreignKey:UserID;references:UserID"`
+	DebitCards []DebitCards `json:"debitCards" gorm:"foreignKey:UserID;references:UserID"`
 	// has many transactions
 	Transactions []Transactions `json:"transactions" gorm:"foreignKey:UserID;references:UserID"`
 }
@@ -21,8 +21,8 @@ func (Users) TableName() string {
 }
 
 type Banners struct {
-	BannerID    string `json:"banner_id" gorm:"column:banner_id;type:varchar(50);primaryKey"`
-	UserID      string `json:"user_id" gorm:"column:user_id;type:varchar(50)"`
+	BannerID    string `json:"bannerId" gorm:"column:banner_id;type:varchar(50);primaryKey"`
+	UserID      string `json:"userId" gorm:"column:user_id;type:varchar(50)"`
 	Title       string `json:"title" gorm:"column:title;type:varchar(255)"`
 	Description string `json:"description" gorm:"column:description;type:text"`
 	Image       string `json:"image" gorm:"column:image;type:varchar(255)"`
@@ -33,7 +33,7 @@ func (Banners) TableName() string {
 }
 
 type UserGreetings struct {
-	UserID   string `json:"user_id" gorm:"column:user_id;type:varchar(50);primaryKey"`
+	UserID   string `json:"userId" gorm:"column:user_id;type:varchar(50);primaryKey"`
 	Greeting string `json:"greeting" gorm:"column:greeting;type:text"`
 }
 
