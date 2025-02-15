@@ -1,19 +1,19 @@
 package entity
 
 type Users struct {
-	UserID string `gorm:"column:user_id;type:varchar(50);primaryKey"`
-	Name   string `gorm:"column:name;type:varchar(100)"`
+	UserID string `json:"user_id" gorm:"column:user_id;type:varchar(50);primaryKey"`
+	Name   string `json:"name" gorm:"column:name;type:varchar(100)"`
 
 	// has many banners
-	Banners []Banners `gorm:"foreignKey:UserID;references:UserID"`
+	Banners []Banners `json:"banners" gorm:"foreignKey:UserID;references:UserID"`
 	// has one user greetings
-	UserGreetings UserGreetings `gorm:"foreignKey:UserID;references:UserID"`
+	UserGreetings UserGreetings `json:"user_greetings" gorm:"foreignKey:UserID;references:UserID"`
 	// has many accounts
-	Accounts []Accounts `gorm:"foreignKey:UserID;references:UserID"`
+	Accounts []Accounts `json:"accounts" gorm:"foreignKey:UserID;references:UserID"`
 	// has many debit cards
-	DebitCards []DebitCards `gorm:"foreignKey:UserID;references:UserID"`
+	DebitCards []DebitCards `json:"debit_cards" gorm:"foreignKey:UserID;references:UserID"`
 	// has many transactions
-	Transactions []Transactions `gorm:"foreignKey:UserID;references:UserID"`
+	Transactions []Transactions `json:"transactions" gorm:"foreignKey:UserID;references:UserID"`
 }
 
 func (Users) TableName() string {
@@ -21,11 +21,11 @@ func (Users) TableName() string {
 }
 
 type Banners struct {
-	BannerID    string `gorm:"column:banner_id;type:varchar(50);primaryKey"`
-	UserID      string `gorm:"column:user_id;type:varchar(50)"`
-	Title       string `gorm:"column:title;type:varchar(255)"`
-	Description string `gorm:"column:description;type:text"`
-	Image       string `gorm:"column:image;type:varchar(255)"`
+	BannerID    string `json:"banner_id" gorm:"column:banner_id;type:varchar(50);primaryKey"`
+	UserID      string `json:"user_id" gorm:"column:user_id;type:varchar(50)"`
+	Title       string `json:"title" gorm:"column:title;type:varchar(255)"`
+	Description string `json:"description" gorm:"column:description;type:text"`
+	Image       string `json:"image" gorm:"column:image;type:varchar(255)"`
 }
 
 func (Banners) TableName() string {
@@ -33,8 +33,8 @@ func (Banners) TableName() string {
 }
 
 type UserGreetings struct {
-	UserID   string `gorm:"column:user_id;type:varchar(50);primaryKey"`
-	Greeting string `gorm:"column:greeting;type:text"`
+	UserID   string `json:"user_id" gorm:"column:user_id;type:varchar(50);primaryKey"`
+	Greeting string `json:"greeting" gorm:"column:greeting;type:text"`
 }
 
 func (UserGreetings) TableName() string {

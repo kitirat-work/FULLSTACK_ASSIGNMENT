@@ -1,16 +1,16 @@
 package entity
 
 type DebitCards struct {
-	CardID string `gorm:"column:card_id;type:varchar(50);primaryKey"`
-	UserID string `gorm:"column:user_id;type:varchar(50)"`
-	Name   string `gorm:"column:name;type:varchar(100)"`
+	CardID string `json:"card_id" gorm:"column:card_id;type:varchar(50);primaryKey"`
+	UserID string `json:"user_id" gorm:"column:user_id;type:varchar(50)"`
+	Name   string `json:"name" gorm:"column:name;type:varchar(100)"`
 
 	// has one DebitCardDesign
-	DebitCardDesign DebitCardDesign `gorm:"foreignKey:CardID;references:CardID"`
+	DebitCardDesign DebitCardDesign `json:"debit_card_design" gorm:"foreignKey:CardID;references:CardID"`
 	// has one DebitCardDetails
-	DebitCardDetails DebitCardDetails `gorm:"foreignKey:CardID;references:CardID"`
+	DebitCardDetails DebitCardDetails `json:"debit_card_details" gorm:"foreignKey:CardID;references:CardID"`
 	// has one DebitCardStatus
-	DebitCardStatus DebitCardStatus `gorm:"foreignKey:CardID;references:CardID"`
+	DebitCardStatus DebitCardStatus `json:"debit_card_status" gorm:"foreignKey:CardID;references:CardID"`
 }
 
 func (DebitCards) TableName() string {
@@ -18,10 +18,10 @@ func (DebitCards) TableName() string {
 }
 
 type DebitCardDesign struct {
-	CardID      string `gorm:"column:card_id;type:varchar(50);primaryKey"`
-	UserID      string `gorm:"column:user_id;type:varchar(50)"`
-	Color       string `gorm:"column:color;type:varchar(10)"`
-	BorderColor string `gorm:"column:border_color;type:varchar(10)"`
+	CardID      string `json:"card_id" gorm:"column:card_id;type:varchar(50);primaryKey"`
+	UserID      string `json:"user_id" gorm:"column:user_id;type:varchar(50)"`
+	Color       string `json:"color" gorm:"column:color;type:varchar(10)"`
+	BorderColor string `json:"border_color" gorm:"column:border_color;type:varchar(10)"`
 }
 
 func (DebitCardDesign) TableName() string {
@@ -29,10 +29,10 @@ func (DebitCardDesign) TableName() string {
 }
 
 type DebitCardDetails struct {
-	CardID string `gorm:"column:card_id;type:varchar(50);primaryKey"`
-	UserID string `gorm:"column:user_id;type:varchar(50)"`
-	Issuer string `gorm:"column:issuer;type:varchar(100)"`
-	Number string `gorm:"column:number;type:varchar(25)"`
+	CardID string `json:"card_id" gorm:"column:card_id;type:varchar(50);primaryKey"`
+	UserID string `json:"user_id" gorm:"column:user_id;type:varchar(50)"`
+	Issuer string `json:"issuer" gorm:"column:issuer;type:varchar(100)"`
+	Number string `json:"number" gorm:"column:number;type:varchar(25)"`
 }
 
 func (DebitCardDetails) TableName() string {
@@ -40,7 +40,7 @@ func (DebitCardDetails) TableName() string {
 }
 
 type DebitCardStatus struct {
-	CardID string `gorm:"column:card_id;type:varchar(50);primaryKey"`
-	UserID string `gorm:"column:user_id;type:varchar(50)"`
-	Status string `gorm:"column:status;type:varchar(20)"`
+	CardID string `json:"card_id" gorm:"column:card_id;type:varchar(50);primaryKey"`
+	UserID string `json:"user_id" gorm:"column:user_id;type:varchar(50)"`
+	Status string `json:"status" gorm:"column:status;type:varchar(20)"`
 }
