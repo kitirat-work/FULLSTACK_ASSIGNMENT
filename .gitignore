@@ -11,4 +11,3 @@ db/init/debit_cards.sql
 db/init/transactions.sql
 db/init/user_greetings.sql
 db/init/users.sql
-.env
