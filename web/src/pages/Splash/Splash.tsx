@@ -3,15 +3,16 @@ import { FunctionComponent } from "react";
 import { useUserDispatch, useUserState } from "../../store/UserContext";
 import type { User } from "../../model/user";
 import UserService from "../../service/UserService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const USER_ID = "000018b0e1a211ef95a30242ac180002";
 
 interface SplashProps {
-
+	
 }
 
 const Splash: FunctionComponent<SplashProps> = () => {
+	const { userId } = useParams<{ userId: string }>();
+	const USER_ID = userId || "defaultUserId";
 	const dispatchUser = useUserDispatch();
 	const { user } = useUserState();
 	let navigate = useNavigate();
