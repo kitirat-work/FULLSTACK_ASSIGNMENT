@@ -1,18 +1,21 @@
 import { Account } from "./account";
 import { DebitCard } from "./debit_card";
+import { Transaction } from "./transaction";
 
 export type User = {
   userId: string;
   name: string;
 
   //has many banner
-  banner: Banner[];
+  banners: Banner[];
   //has one user greeting
-  userGreeting?: UserGreeting;
+  userGreetings?: UserGreeting;
   //has many accounts
   accounts: Account[];
   //has many debit cards
   debitCards: DebitCard[];
+  //has many transactions
+  transactions: Transaction[];
 }
 
 export type Banner = {

@@ -4,11 +4,11 @@ export type DebitCard = {
   name: string | null;
 
   // has one design
-  design: DebitCardDesign;
+  debitCardDesign: DebitCardDesign;
   // has one detail
-  details: DebitCardDetails;
+  debitCardDetails: DebitCardDetails;
   // has one status
-  status: DebitCardStatus;
+  debitCardStatus: DebitCardStatus;
 };
 
 export type DebitCardDesign = {

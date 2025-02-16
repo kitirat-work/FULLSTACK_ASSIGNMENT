@@ -31,8 +31,8 @@ const Splash: FunctionComponent<SplashProps> = () => {
 
 	async function initUser() {
 		try {
-			const res: User = await UserService.GetUserById(USER_ID);
-			dispatchUser({ type: 'update', payload: res });
+			const res = await UserService.GetUserById(USER_ID);
+			dispatchUser({ type: 'update', payload: res.data });
 			
 		} catch (error) {
 			console.error(error);

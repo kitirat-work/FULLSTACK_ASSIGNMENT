@@ -1,15 +1,15 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import UserService from "../../service/UserService";
-import { useUserState } from "../../store/UserContext";
+import { useUserDispatch, useUserState } from "../../store/UserContext";
 import { PinState } from "./model";
+import AuthService from "../../service/AuthService";
 
 export function usePin() {
   const { user } = useUserState();
+	const dispatchUser = useUserDispatch();
   const navigate = useNavigate();
   const [state, setState] = React.useState<PinState>({
     pin: "",
-    attemptsLeft: 3,
     errorMessage: "",
   });
 
@@ -34,19 +34,20 @@ export function usePin() {
 
   async function handleSubmitPin(pin: string) {
     try {
-      await UserService.Login(pin);
+      console.log(user.userId, pin);
+      
+      const res = await AuthService.Login(user.userId, pin);
+      if (!res.data) {
+        throw new Error("Invalid PIN");
+      }
+      dispatchUser({ type: 'update', payload: res.data });
       navigate('/bank-main');
     } catch (error) {
       setState((prevState) => ({
         ...prevState,
         pin: "",
-        attemptsLeft: prevState.attemptsLeft - 1,
-        errorMessage: "Invalid PIN",
+        errorMessage: error.message,
       }));
-
-      if (state.attemptsLeft === 1) {
-        navigate('/splash');
-      }
     }
   }
 
@@ -55,6 +56,7 @@ export function usePin() {
     if (!user) {
       navigate('/splash');
     }
+    
   }, []);
 
   return { state, user, handleKeyPress };

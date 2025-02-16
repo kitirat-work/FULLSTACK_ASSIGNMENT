@@ -1,17 +1,17 @@
 import { User } from "../model/user";
 
-const baseURL = process.env.API_URL + '/user';
+const baseURL = process.env.API_URL + '/auth';
 
-async function GetUserById(id: string): Promise<{data: User}> {
-  const response = await fetch(`${baseURL}/${id}`, {
-    method: 'GET',
+async function Login(id: string, pin: string): Promise<{data: User}> {
+  const response = await fetch(`${baseURL}/login/pin`, {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify({ id, pin }),
   });
 
   const result = await response.json();
-
   if (!response.ok) {
     throw new Error(result.message);
   }
@@ -20,7 +20,6 @@ async function GetUserById(id: string): Promise<{data: User}> {
 }
 
 
-
 export default {
-  GetUserById,
+  Login,
 };

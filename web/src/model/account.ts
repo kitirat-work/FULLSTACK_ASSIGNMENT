@@ -7,11 +7,11 @@ export type Account = {
   issuer: string | null;
 
   // has many flags
-  flags: AccountFlag[];
+  accountFlags: AccountFlag[];
   // has one detail
-  details: AccountDetail;
+  accountDetails: AccountDetail;
   // has one balance
-  balance: AccountBalance;
+  accountBalances: AccountBalance;
 };
 
 
