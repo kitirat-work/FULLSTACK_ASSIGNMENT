@@ -1,9 +1,8 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import { useUserDispatch, useUserState } from "../../store/UserContext";
-import type { User } from "../../model/user";
+import { useNavigate } from "react-router-dom";
 import UserService from "../../service/UserService";
-import { useNavigate, useParams } from "react-router-dom";
+import { useUserDispatch, useUserState } from "../../store/UserContext";
 
 
 interface SplashProps {
@@ -11,8 +10,8 @@ interface SplashProps {
 }
 
 const Splash: FunctionComponent<SplashProps> = () => {
-	const { userId } = useParams<{ userId: string }>();
-	const USER_ID = userId || "defaultUserId";
+	const queryParams = new URLSearchParams(window.location.search);
+	const userId = queryParams.get('userId');
 	const dispatchUser = useUserDispatch();
 	const { user } = useUserState();
 	let navigate = useNavigate();
@@ -32,7 +31,7 @@ const Splash: FunctionComponent<SplashProps> = () => {
 
 	async function initUser() {
 		try {
-			const res = await UserService.GetUserById(USER_ID);
+			const res = await UserService.GetUserById(userId);
 			dispatchUser({ type: 'update', payload: res.data });
 			
 		} catch (error) {

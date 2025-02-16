@@ -29,6 +29,22 @@ Backend Development
     brew install make
     ```
     
+## Step to run the project
+
+1. Build and run
+
+```bash
+make reload
+```
+
+2. Load test data into database
+3. Migrate database schema
+
+```bash
+ make migrate-up dir=db/migrations/sql db="mysql://myuser:mypassword@tcp(127.0.0.1:3306)/mydatabase"
+```
+
+4. Open URL: http://locahost it will lead you to  [http://localhost/splash](http://localhost/splash?userId=00006207e1a211ef95a30242ac180002) then you can add userId to be a query param like this http://localhost/splash?userId=00006207e1a211ef95a30242ac180002 (this solution assume the user device have a user id from some solution before)
 
 ## Project structures
 
