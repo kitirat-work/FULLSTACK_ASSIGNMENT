@@ -67,6 +67,8 @@ func TestAuthService_LoginPin(t *testing.T) {
 
 		cache.On("Reset", mock.Anything)
 
+		cache.On("ResetAfter1Minute", mock.Anything)
+
 		userRepo.On("GetFullyAssociativeById", mock.Anything, mock.Anything).Return(
 			func(context.Context, string) *entity.Users {
 				return resGetUser
@@ -127,6 +129,19 @@ func TestAuthService_LoginPin(t *testing.T) {
 
 		assert.Error(t, err)
 		cache.AssertCalled(t, "GetCount", id)
+	})
+
+	t.Run("should reset count of login attempt when count of login attempt exceed limit", func(t *testing.T) {
+		beforeEach()
+		id := "123456"
+		pin := "000000"
+		resIsExist = true
+		resGetCount = 3
+
+		_, err := svc.LoginPin(ctx, id, pin)
+
+		assert.Error(t, err)
+		cache.AssertCalled(t, "ResetAfter1Minute", id)
 	})
 
 	t.Run("should increment count of login attempt", func(t *testing.T) {

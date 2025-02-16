@@ -35,16 +35,21 @@ func (a *authService) LoginPin(ctx context.Context, id string, pin string) (*ent
 	}
 
 	if a.cache.GetCount(id) >= a.limit {
+		a.cache.ResetAfter1Minute(id)
 		return nil, errors.New("Account locked. Try again 1 minute later.")
-	}
-
-	if err := a.cache.Increment(id); err != nil {
-		return nil, err
 	}
 
 	// Hardcoded PIN for testing purposes.
 	if pin != "000000" {
+		if err := a.cache.Increment(id); err != nil {
+			return nil, err
+		}
+
 		attemptsLeft := a.limit - a.cache.GetCount(id)
+		if attemptsLeft == 0 {
+			a.cache.ResetAfter1Minute(id)
+			return nil, errors.New("Account locked. Try again 1 minute later.")
+		}
 		return nil, errors.New(fmt.Sprintf("Invalid PIN. You have %d attempts left.", attemptsLeft))
 	}
 
